@@ -7,7 +7,7 @@
     </h2>
 </div>
 
-<form action={{url_for('add_tasks', id='out_form' list_id=new_list.id)}} method="post"></form>
+<form id='out_form' action={{url_for('add_tasks', list_id=new_list.id)}} method="post"></form>
 
 <div class="container form-group mt-3 px-3 border-bottom" id='task_list'>
     <h5 class="mb-1" style='color: #588b8b'>Current Tasks
@@ -35,7 +35,7 @@
             <img height='13' src='/static/assets/trash.svg' width='13'></a>
 
         <div class='task{{task.id}}' style="display: none;">
-            <form action={{url_for('change_tasks', list_id=new_list.id, method="post" task_id=task.id)}}>
+            <form action={{url_for('change_tasks', list_id=new_list.id,  task_id=task.id)}} method="post">
                 <input name='update_task_name' placeholder="New task name" required style="width: 140px; height:30px"
                        type="text"/>
                 <input class="mb-4" name='new_due_date' placeholder="New due date" style="width: 140px; height:30px"
@@ -63,7 +63,7 @@
             <img height='13' src='/static/assets/trash.svg' width='13'></a>
 
         <div class='task{{task.id}}' style="display: none;">
-            <form action={{url_for('change_tasks', list_id=new_list.id, method="post" task_id=task.id)}}>
+            <form action={{url_for('change_tasks', list_id=new_list.id,  task_id=task.id)}} method="post">
                 <input name='update_task_name' placeholder="New task name" required style="width: 140px; height:30px"
                        type="text"/>
                 <input class="mb-4" name='new_due_date' placeholder="New due date" style="width: 140px; height:30px"
