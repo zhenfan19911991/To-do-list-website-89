@@ -1,0 +1,109 @@
+{% include "index.html" %}
+<div class='d-flex container mt-3'>
+    <h2>{{new_list.list_name}}
+        <badge class="mx-1" style="font-size: small; font-weight: 100; font-style: italic;">Created on
+            {{new_list.list_create_date}}
+        </badge>
+    </h2>
+</div>
+
+<form action={{url_for('add_tasks', id='out_form' list_id=new_list.id)}} method="post"></form>
+
+<div class="container form-group mt-3 px-3 border-bottom" id='task_list'>
+    <h5 class="mb-1" style='color: #588b8b'>Current Tasks
+        <badge class="mb-2" style="font-size: small; font-weight: 100; font-style: italic;">Check the box for
+            completed tasks and hit Update button
+        </badge>
+    </h5>
+
+    {% for task in tasks:%}
+    <div class="custom-control custom-checkbox border-bottom">
+        {% if task.status == 'completed': %}
+        <input checked class="custom-control-input" form='out_form' id="check1" name='task_status'
+               type="checkbox" value={{task.id}}>
+        <label class="custom-control-label my-2 text-decoration-line-through" for="check1"
+               style="font-size: 25px; font-weight: 150">{{task.task}}
+            <span class="badge bg-info mx-2" style="font-size: 12px">due date: {{task.task_due_date}}</span><span
+                    class="badge bg-success" style="font-size: 12px">completed</span>
+        </label>
+        <a class="px-2"
+           onclick="toggle_display('.task{{task.id}}')"><img height='13'
+                                                             src='/static/assets/pen.svg'
+                                                             width='13'></a>
+        <a class='px-2' href="{{url_for('delete_tasks', id = task.id, list_id = new_list.id)}}"
+           onclick="return confirm('Are you sure to delete this task?')">
+            <img height='13' src='/static/assets/trash.svg' width='13'></a>
+
+        <div class='task{{task.id}}' style="display: none;">
+            <form action={{url_for('change_tasks', list_id=new_list.id, method="post" task_id=task.id)}}>
+                <input name='update_task_name' placeholder="New task name" required style="width: 140px; height:30px"
+                       type="text"/>
+                <input class="mb-4" name='new_due_date' placeholder="New due date" style="width: 140px; height:30px"
+                       type="date"/>
+                <button class='my-2 mx-2' name="change_task_name"
+                        style="width: 60px; height:30px; font-size: 14px; border-radius: 6px; background-color: #008CBA; border: none; color: white;
+                        text-align: center;display: inline-block;"
+                        type="submit"
+                >Submit
+                </button>
+            </form>
+        </div>
+        {% else:%}
+        <input class="custom-control-input" form='out_form' id="check2" name='task_status' type="checkbox"
+               value={{task.id}}>
+        <label class="custom-control-label my-2" for="check2" style="font-size: 25px; font-weight: 150">{{task.task}}
+            <span class="badge bg-info mx-2" style="font-size: 12px">due date: {{task.task_due_date}}</span>
+        </label>
+        <a class="px-2"
+           onclick="toggle_display('.task{{task.id}}')"><img height='13'
+                                                             src='/static/assets/pen.svg'
+                                                             width='13'></a>
+        <a class='px-2' href="{{url_for('delete_tasks', id = task.id, list_id = new_list.id)}}"
+           onclick="return confirm('Are you sure to delete this task?')">
+            <img height='13' src='/static/assets/trash.svg' width='13'></a>
+
+        <div class='task{{task.id}}' style="display: none;">
+            <form action={{url_for('change_tasks', list_id=new_list.id, method="post" task_id=task.id)}}>
+                <input name='update_task_name' placeholder="New task name" required style="width: 140px; height:30px"
+                       type="text"/>
+                <input class="mb-4" name='new_due_date' placeholder="New due date" style="width: 140px; height:30px"
+                       type="date"/>
+                <button class='my-2 mx-2' name="change_task_name"
+                        style="width: 60px; height:30px; font-size: 14px; border-radius: 6px; background-color: #008CBA; border: none; color: white;
+                        text-align: center;display: inline-block;"
+                        type="submit"
+                >Submit
+                </button>
+            </form>
+        </div>
+
+        {% endif%}
+
+    </div>
+    {% endfor %}
+
+    <button class="btn btn-secondary btn-sm mt-3 mb-3 " form='out_form' name='update_tasks' style="background-color: #588b8b; border:none"
+            type="submit"
+    >Update
+    </button>
+</div>
+
+
+<form action={{url_for('add_tasks', list_id=new_list.id)}} method="post">
+    <div class="container form-group mt-2 px-3 " id='task_list_1'>
+        <h5 class="mb-2 mt-4" style="color: #f28f3b">Add New Tasks</h5>
+        <label class="mb-1 mt-2" for="exampleFormControlTextarea1">Task Name</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name='task_name' placeholder="Task name"
+                  required rows="1"></textarea>
+        <label class="mt-2 mb-1" for="startDate">Due date</label>
+        <input class="form-control mb-2" id="startDate" name='due_date' required type="date"/>
+        <button class="btn btn-secondary btn-sm mt-2 mb-3" name="create_task" style="background-color: #f28f3b; border: none"
+                type="submit">Create
+        </button>
+    </div>
+    </div>
+</form>
+
+
+{% include "footer.html" %}
+

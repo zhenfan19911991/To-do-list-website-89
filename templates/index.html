@@ -1,0 +1,41 @@
+{% include "navbar.html" %}
+
+<header id='list_header'>
+
+    <div class="container flex-wrap mb-2 py-4" style="font-size: 15px;">
+        <h4 style="color:#696d7d">My to-do lists</h4>
+        <form action='/' method="post">
+            <textarea class="form-control mb-3" id="new_list" name="new_list" placeholder='List name' required
+                      rows="1"></textarea>
+            <button class="btn btn-success btn-sm d-inline-flex align-items-center mb-2" name='create_list'
+                    style='background-color: #696d7d; border: none;' type="submit">
+                Create a new to-do list
+            </button>
+        </form>
+
+        {% for list in lists:%}
+        <h4 class='my-2'><a class="text-dark" href={{url_for('add_tasks', list_id=list.id)}} style="font-size: 18px">{{list.list_name}}
+            <a class="px-2"
+               onclick="toggle_display('.example{{list.id}}')"><img height='13'
+                                                                    src='/static/assets/pen.svg'
+                                                                    width='13'></a>
+            <a href="{{url_for('delete_list', id = list.id)}}"
+               onclick="return confirm('Are you sure to delete this list?')"><img height='13'
+                                                                                  src='/static/assets/trash.svg'
+                                                                                  width='13'></a>
+        </a>
+        </h4>
+        <div class='example{{list.id}}' style="display: none;">
+            <form action={{url_for('home', list_id_update=list.id)}} method="post">
+                <input name='update_list_name' placeholder="New list name" style="width: 14%; height:50%" type="text">
+                <button class='btn btn-secondary' name="change_list_name"
+                        style=" --bs-btn-font-size: .75rem; --bs-btn-padding-y: .25rem;  "
+                        type="submit">Update
+                </button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</header>
+
+{% include "footer.html" %}

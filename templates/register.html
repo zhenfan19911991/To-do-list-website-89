@@ -1,0 +1,24 @@
+{% include "navbar.html" %}
+{% from "bootstrap5/form.html" import render_form %}
+
+<main class="mb-4">
+    <div class="container">
+
+        <div class="row">
+            <div class="mt-5 col-lg-8 col-md-10 mx-auto">
+                <h3>Sign up to become a member</h3><br>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p class='flash'>{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {{render_form(form, novalidate = True)}}
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% include "footer.html" %}

@@ -1,0 +1,27 @@
+<script crossorigin="anonymous"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+    if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+    }
+
+function toggle_display(id){
+  el = document.querySelector(id);
+
+  if(el.style.display == 'none'){
+      el.style.display = 'block'
+  }else{
+     el.style.display = 'none'
+  }
+}
+</script>
+
+<footer class="footer py-3 border-top">
+    <div class="container ">
+        <span class="text-muted">© My Personal To-do List</span>
+    </div>
+</footer>
+
+</body>
+</html>

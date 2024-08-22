@@ -1,0 +1,44 @@
+
+.flash{
+color: #ee6f57;
+text-align: center;
+}
+
+::placeholder {
+font-weight: 150;
+font-style: italic;
+}
+
+#list_header {
+border-color: #52796f !important;
+background-color: #f8f9fa !important;
+}
+
+#task_list{
+border-color: #52796f !important;
+}
+
+#task_list_1{
+border-color: #52796f !important;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+   margin-bottom: 30px;
+   clear: both;
+   background-color: red;
+}
+
+.footer {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          /* Set the fixed height of the footer here */
+          height: 60px;
+          background-color: white;
+        }
+
