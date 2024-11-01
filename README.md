@@ -1,7 +1,7 @@
 
 # Todo List Website
 
-A todo list website that for users to store and manage their to-do lists.
+A todo list website for users to store and manage their to-do lists.
 
 
 
